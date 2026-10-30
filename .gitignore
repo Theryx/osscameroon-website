@@ -5,6 +5,7 @@
 *.pyc
 *venv
 .secrets
+.secrets-env
 
 #vim
 .*sw*
@@ -55,3 +56,8 @@ app.*.map.json
 config.txt
 
 node_modules
+
+#meilisearch
+data.ms
+bots/hermes/config.ini
+bots/hermes/config.txt

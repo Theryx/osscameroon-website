@@ -5,7 +5,7 @@ PYTHON=$(VENVPATH)/bin/python3
 
 venv: $(VENVPATH)/bin/activate
 $(VENVPATH)/bin/activate: requirements.txt
-	test -d $(VENVPATH) || virtualenv -p python3 $(VENVPATH); \
+	test -d $(VENVPATH) || python3 -m venv $(VENVPATH); \
 	. $(VENVPATH)/bin/activate; \
 	pip install -r requirements.txt; \
 	touch $(VENVPATH)/bin/activate;
@@ -14,10 +14,10 @@ $(VENVPATH)/bin/activate: requirements.txt
 ##venv: setup your dev environment
 install-deps: venv
 
-##run: run the scraper and accepts the number of PAGES as argument
+##run: run the indexer
 ## 		example: make run
 run: install-deps
-	GOOGLE_APPLICATION_CREDENTIALS=.secrets/service-account.json $(PYTHON) -m app.cli
+	$(PYTHON) -m app.cli
 
 lint: venv
 	$(PYTHON) -m flake8 . --show-source --statistics
